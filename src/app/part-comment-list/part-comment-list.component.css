@@ -69,6 +69,7 @@ a {
 .blog-comment ul.comments ul {
     list-style-type: none;
     padding: 0;
+    /*Indent Size*/
     margin-left: 85px;
 }
 

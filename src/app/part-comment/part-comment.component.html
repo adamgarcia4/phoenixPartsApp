@@ -8,3 +8,13 @@
 		{{data.text}}
 	</p>
 </div>
+
+
+<ul class="comments">
+	<li class="clearfix">
+		<div *ngIf="!isEmpty(child)">
+			<app-part-comment [data]="child"></app-part-comment>
+		</div>
+
+	</li>
+</ul>

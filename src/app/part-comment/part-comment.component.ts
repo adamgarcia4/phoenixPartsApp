@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
 	selector: 'app-part-comment',
@@ -7,20 +7,25 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PartCommentComponent implements OnInit {
 
-	data;
+	@Input() data: any;
+	child;
 
 	constructor() {
 	}
 
 	ngOnInit() {
-		this.data = {
-			imgURL: "https://bootdey.com/img/Content/user_1.jpg",
-			date: "Dec 19, 2014 ",
-			name: "JohnDoe",
-			text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
-
-
+		if(this.child != null) {
+			this.child = this.data.children[0];
 		}
+
+	}
+
+	isEmpty(obj) {
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key))
+				return false;
+		}
+		return true;
 	}
 
 }

@@ -31,3 +31,9 @@ img.avatar {
     border-bottom: 1px solid #eee;
 }
 
+ul.comments li {
+    list-style-type: none;
+    padding: 0;
+    /*Indent Size*/
+    margin-left: 85px;
+}
