@@ -7,11 +7,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PartCommentComponent implements OnInit {
 
+	data;
+
 	constructor() {
 	}
 
 	ngOnInit() {
+		this.data = {
+			imgURL: "https://bootdey.com/img/Content/user_1.jpg",
+			date: "Dec 19, 2014 ",
+			name: "JohnDoe",
+			text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
 
+
+		}
 	}
 
 }
