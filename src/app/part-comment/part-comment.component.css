@@ -37,3 +37,8 @@ ul.comments li {
     /*Indent Size*/
     margin-left: 85px;
 }
+
+.comment-form {
+    margin-left: 85px;
+    padding-bottom: 15px;
+}

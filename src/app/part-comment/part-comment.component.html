@@ -1,9 +1,8 @@
 <img src="{{data.imgURL}}" class="avatar" alt="">
 <div class="post-comments">
-	<p class="meta">{{data.date}} <a href="#">{{data.name}}</a> says : <i class="pull-right"><a
-			href="#">
-		<small>Reply</small>
-	</a></i></p>
+	<p class="meta">{{data.date}} <a href="#">{{data.name}}</a> says : <i class="pull-right">
+		<small><button (click)="commentToggle()">Reply</button></small>
+	</i></p>
 	<p>
 		{{data.text}}
 	</p>
@@ -15,7 +14,16 @@
 			<div *ngIf="!isEmpty(child)">
 				<app-part-comment [data]="subComment"></app-part-comment>
 			</div>
-
 		</li>
 	</ul>
+</div>
+
+<div *ngIf="isNewCommentShow">
+	<form class="comment-form">
+		<div class="form-group">
+			<label for="exampleFormControlTextarea1">Reply</label>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+		</div>
+		<button class="btn btn-primary">Submit new comment</button>
+	</form>
 </div>

@@ -9,6 +9,7 @@ export class PartCommentComponent implements OnInit {
 
 	@Input() data: any;
 	child = [];
+	isNewCommentShow: boolean;
 
 	constructor() {
 	}
@@ -19,6 +20,7 @@ export class PartCommentComponent implements OnInit {
 			// Todo: Protect against children not being an array (IE: Single comment object, etc...)
 			this.child = this.data.children.slice();
 		}
+		this.isNewCommentShow = false;
 
 	}
 
@@ -28,6 +30,10 @@ export class PartCommentComponent implements OnInit {
 				return false;
 		}
 		return true;
+	}
+
+	commentToggle() {
+		this.isNewCommentShow = !this.isNewCommentShow;
 	}
 
 }
