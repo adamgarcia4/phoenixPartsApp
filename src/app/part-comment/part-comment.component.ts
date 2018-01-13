@@ -8,14 +8,16 @@ import {Component, OnInit, Input} from '@angular/core';
 export class PartCommentComponent implements OnInit {
 
 	@Input() data: any;
-	child;
+	child = [];
 
 	constructor() {
 	}
 
 	ngOnInit() {
-		if(this.child != null) {
-			this.child = this.data.children[0];
+
+		if(this.data.children != null) {
+			// Todo: Protect against children not being an array (IE: Single comment object, etc...)
+			this.child = this.data.children.slice();
 		}
 
 	}

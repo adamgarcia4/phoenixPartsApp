@@ -24,6 +24,12 @@ export class PartCommentListComponent implements OnInit {
 					date: "Dec 20, 2014 ",
 					name: "Alice",
 					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
+				},
+				{
+					imgURL: "https://bootdey.com/img/Content/user_2.jpg",
+					date: "Dec 20, 2014 ",
+					name: "Alice",
+					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
 				}
 			]
 		}

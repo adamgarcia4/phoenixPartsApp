@@ -9,12 +9,13 @@
 	</p>
 </div>
 
+<div *ngFor="let subComment of child">
+	<ul class="comments">
+		<li class="clearfix">
+			<div *ngIf="!isEmpty(child)">
+				<app-part-comment [data]="subComment"></app-part-comment>
+			</div>
 
-<ul class="comments">
-	<li class="clearfix">
-		<div *ngIf="!isEmpty(child)">
-			<app-part-comment [data]="child"></app-part-comment>
-		</div>
-
-	</li>
-</ul>
+		</li>
+	</ul>
+</div>
