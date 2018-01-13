@@ -1,0 +1,32 @@
+/* Background Color */
+body {
+    background: #eee;
+}
+
+/* Horizontal Line */
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+}
+
+/* Main Comment Section Styling*/
+.comment-section::before,
+.comment-section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Adjusts width of comment section */
+.comment-section {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/* Removes bullet from comments */
+.comment-section ul {
+    list-style-type: none;
+    padding: 0;
+}

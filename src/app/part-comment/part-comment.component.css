@@ -1,0 +1,52 @@
+/* Profile Image */
+img.avatar {
+    position: relative;
+    float: left;
+    margin-left: 0;
+    margin-top: 0;
+    width: 65px;
+    height: 65px;
+}
+
+/* Main Comment Body */
+.comment {
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    margin-left: 85px;
+    margin-right: 0px;
+    padding: 10px 20px;
+    position: relative;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    background: #fff;
+    color: #6b6e80;
+    position: relative;
+}
+
+/* Comment Meta Data styling */
+.meta {
+    font-size: 13px;
+    color: #aaaaaa;
+    padding-bottom: 8px;
+    margin-bottom: 10px !important;
+    border-bottom: 1px solid #eee;
+}
+
+/* Indented children comments */
+ul.child-comment li {
+    list-style-type: none;
+    padding: 0;
+    /*Indent Size*/
+    margin-left: -10px;
+}
+
+.comment-form {
+    margin-left: 85px;
+    padding-bottom: 15px;
+}
+
+.comment-form >.text-box {
+    margin: -8px 0px 6px 0px;
+}

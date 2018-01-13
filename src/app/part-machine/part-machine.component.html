@@ -1,0 +1,33 @@
+<div class="col">
+	<h3><u>
+		<div class="text-center">Machine Schedule</div>
+	</u>
+	</h3>
+</div>
+<div class="col">
+	<table class="table table-sm table-striped">
+		<thead>
+		<tr>
+			<th>Status</th>
+			<th>Machine</th>
+			<th>Assigned</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let machine of machineList; let i=index;">
+			<td style="width:10%;">
+				<div class="col-md">
+					<div *ngIf="machine.completed; else nope;">
+						<i class="fas fa-check-circle fa-lg"></i>
+					</div>
+					<ng-template #nope>
+						<i class="fas fa-times-circle fa-lg"></i>
+					</ng-template>
+				</div>
+			</td>
+			<td>{{machine.name}}</td>
+			<td>{{machine.assigned}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
