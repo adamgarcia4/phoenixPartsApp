@@ -1,3 +1,4 @@
+/* Profile Image */
 img.avatar {
     position: relative;
     float: left;
@@ -7,9 +8,10 @@ img.avatar {
     height: 65px;
 }
 
-.post-comments {
+/* Main Comment Body */
+.comment {
     border: 1px solid #eee;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-left: 85px;
     margin-right: 0px;
     padding: 10px 20px;
@@ -23,6 +25,7 @@ img.avatar {
     position: relative;
 }
 
+/* Comment Meta Data styling */
 .meta {
     font-size: 13px;
     color: #aaaaaa;
@@ -31,14 +34,19 @@ img.avatar {
     border-bottom: 1px solid #eee;
 }
 
-ul.comments li {
+/* Indented children comments */
+ul.child-comment li {
     list-style-type: none;
     padding: 0;
     /*Indent Size*/
-    margin-left: 85px;
+    margin-left: -10px;
 }
 
 .comment-form {
     margin-left: 85px;
     padding-bottom: 15px;
+}
+
+.comment-form >.text-box {
+    margin: -8px 0px 6px 0px;
 }
