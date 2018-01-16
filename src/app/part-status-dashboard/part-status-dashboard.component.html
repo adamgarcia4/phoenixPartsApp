@@ -1,0 +1,38 @@
+<p>
+	part-status-dashboard works!
+</p>
+
+<div class="form-group">
+	<label for="exampleFormControlSelect1">Example select</label>
+	<select class="form-control" id="exampleFormControlSelect1" (change)="changePriorityFilter($event.target)">
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+	</select>
+</div>
+
+<div class="row">
+	<div *ngFor="let part of filteredParts" class="col-md-4">
+		<div class="part">
+			{{part.priority}} {{part.name}}
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="part">
+			test
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="part">
+			test
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="part">
+			test
+		</div>
+	</div>
+
+</div>
