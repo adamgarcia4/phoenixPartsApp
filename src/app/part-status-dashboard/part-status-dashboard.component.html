@@ -14,11 +14,22 @@
 </div>
 
 <div class="row">
+
 	<div *ngFor="let part of filteredParts" class="col-md-4">
-		<div class="part">
-			{{part.priority}} {{part.name}}
+		<div class="card bg-light mb-3" style="max-width: 18rem;">
+			<div class="card-header">
+				{{part.name}} | {{part.number}}
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">{{part.priority}}</h5>
+				<p class="card-text"></p>
+			</div>
+			<div class="card-footer text-muted">
+				<button class="btn btn-primary btn-sm">Part Details</button>
+			</div>
 		</div>
 	</div>
+
 	<div class="col-md-4">
 		<div class="part">
 			test
