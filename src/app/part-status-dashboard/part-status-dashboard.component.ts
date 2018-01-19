@@ -1,6 +1,11 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
 
 
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { INCREMENT, DECREMENT, RESET } from '../state-management/reducers/part';
+
+
 @Component({
 	selector: 'app-part-status-dashboard',
 	templateUrl: './part-status-dashboard.component.html',
@@ -9,6 +14,8 @@ import {Component, OnInit, OnChanges} from '@angular/core';
 export class PartStatusDashboardComponent implements OnInit, OnChanges {
 
 	filteredStatus;
+
+	count$: Observable<number>;
 
 	data =
 		[
@@ -56,9 +63,13 @@ export class PartStatusDashboardComponent implements OnInit, OnChanges {
 			}
 		];
 
+
+
 	filteredParts;
-	constructor() {
+	constructor(private store: Store<any>) {
 		this.filteredStatus = '1';
+
+		this.count$ = store.select('counter');
 
 		this.filteredParts = this.filterPartStatus(this.data, this.filteredStatus);
 	}
@@ -77,6 +88,10 @@ export class PartStatusDashboardComponent implements OnInit, OnChanges {
 				return false;
 			}
 		});
+	}
+
+	addCounter() {
+		this.store.dispatch({ type: INCREMENT });
 	}
 
 	ngOnInit() {

@@ -15,6 +15,12 @@ import {BsDropdownModule} from 'ngx-bootstrap';
 
 import {RouterModule, Routes} from '@angular/router';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { partReducer } from './state-management/reducers/part';
+
+
 const appRoutes: Routes = [
 	{
 		path: '', component: PartStatusDashboardComponent
@@ -42,8 +48,12 @@ const appRoutes: Routes = [
 		BsDropdownModule.forRoot(),
 		RouterModule.forRoot(
 			appRoutes,
-			{enableTracing: true} // <-- debugging purposes only
-		)
+			{enableTracing: false} // <-- debugging purposes only
+		),
+		StoreModule.forRoot({ count: partReducer }),
+		StoreDevtoolsModule.instrument({
+			maxAge: 25 //  Retains last 25 states
+		})
 	],
 	providers: [],
 	bootstrap: [AppComponent]

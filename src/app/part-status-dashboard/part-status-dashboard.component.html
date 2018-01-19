@@ -25,10 +25,12 @@
 				<p class="card-text"></p>
 			</div>
 			<div class="card-footer text-muted">
-				<button class="btn btn-primary btn-sm">Part Details</button>
+				<button class="btn btn-primary btn-sm" (click)="addCounter()">Part Details</button>
 			</div>
 		</div>
 	</div>
+
+	{{count$ | async}}
 
 	<div class="col-md-4">
 		<div class="part">
