@@ -13,23 +13,14 @@ import {PartCommentListComponent} from './part-comment-list/part-comment-list.co
 import {PartStatusDashboardComponent} from './part-status-dashboard/part-status-dashboard.component';
 import {BsDropdownModule} from 'ngx-bootstrap';
 
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { partReducer } from './state-management/reducers/part';
+import { partReducer } from './state-management/reducers/part.reducers';
 
-
-const appRoutes: Routes = [
-	{
-		path: '', component: PartStatusDashboardComponent
-	},
-	{
-		path: 'dashboard', component: HomePageComponent
-	}
-];
-
+import { appRoutes } from './routes';
 
 @NgModule({
 	declarations: [
@@ -50,7 +41,7 @@ const appRoutes: Routes = [
 			appRoutes,
 			{enableTracing: false} // <-- debugging purposes only
 		),
-		StoreModule.forRoot({ count: partReducer }),
+		StoreModule.forRoot({ part: partReducer }),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25 //  Retains last 25 states
 		})

@@ -3,8 +3,8 @@ import {Component, OnInit, OnChanges} from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { INCREMENT, DECREMENT, RESET } from '../state-management/reducers/part';
-
+import { INCREMENT, DECREMENT, RESET } from '../state-management/reducers/part.reducers';
+import { AddPart } from '../state-management/actions/part.actions';
 
 @Component({
 	selector: 'app-part-status-dashboard',
@@ -64,14 +64,24 @@ export class PartStatusDashboardComponent implements OnInit, OnChanges {
 		];
 
 
+	newPart = {
+		"id": 1000,
+		"name": "Part 0",
+		"number": "4-2018-00-001",
+		"assemblyId": 1,
+		priority: 0
+	};
+
+
 
 	filteredParts;
+
 	constructor(private store: Store<any>) {
 		this.filteredStatus = '1';
 
 		this.count$ = store.select('counter');
 
-		this.filteredParts = this.filterPartStatus(this.data, this.filteredStatus);
+		this.filteredParts = this.data;
 	}
 
 	changePriorityFilter(target) {
@@ -81,6 +91,10 @@ export class PartStatusDashboardComponent implements OnInit, OnChanges {
 
 	// Pass in raw part List and filter status.  Returns filtered list
 	filterPartStatus(partList, filterStatus) {
+		if(filterStatus == 0) {
+			return partList;
+		}
+
 		return partList.filter(function(part) {
 			if(part.priority == filterStatus) {
 				return true;
@@ -92,6 +106,8 @@ export class PartStatusDashboardComponent implements OnInit, OnChanges {
 
 	addCounter() {
 		this.store.dispatch({ type: INCREMENT });
+		var part = this.newPart;
+		this.store.dispatch(new AddPart({part}))
 	}
 
 	ngOnInit() {

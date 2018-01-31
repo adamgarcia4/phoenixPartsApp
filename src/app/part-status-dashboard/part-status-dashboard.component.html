@@ -5,6 +5,7 @@
 <div class="form-group">
 	<label for="exampleFormControlSelect1">Example select</label>
 	<select class="form-control" id="exampleFormControlSelect1" (change)="changePriorityFilter($event.target)">
+		<option>0</option>
 		<option>1</option>
 		<option>2</option>
 		<option>3</option>
@@ -12,6 +13,8 @@
 		<option>5</option>
 	</select>
 </div>
+
+{{count$ | async}}
 
 <div class="row">
 
@@ -30,7 +33,7 @@
 		</div>
 	</div>
 
-	{{count$ | async}}
+
 
 	<div class="col-md-4">
 		<div class="part">
