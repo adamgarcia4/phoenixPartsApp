@@ -5,7 +5,6 @@ import {Part} from '../state-management/models/part';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import {AddPart, SetPriorityFilter} from '../state-management/actions/part.actions';
-import {Subscription} from "rxjs";
 import {withLatestFrom, map} from 'rxjs/operators';
 
 
@@ -76,14 +75,14 @@ export class PartStatusDashboardComponent implements OnInit {
 
 		// Subscription when new parts arrive.  Unfiltered
 		this.parts$ = this.state$.map(function (state) {
-			console.log('Parts are: ');
-			console.log(state.parts);
+			// console.log('Parts are: ');
+			// console.log(state.parts);
 			return state.parts;
 		});
 
 		// Filtered Status for part filtering
 		this.filteredStatus$ = this.state$.map(function (state) {
-			console.log('priority filter is: ' + state.priorityFilter);
+			// console.log('priority filter is: ' + state.priorityFilter);
 			return state.priorityFilter;
 		});
 
@@ -93,7 +92,6 @@ export class PartStatusDashboardComponent implements OnInit {
 		this.filteredPartsList$ = this.parts$.pipe(
 			withLatestFrom(this.filteredStatus$),
 			map(([parts, filterNum]) => {
-				console.log('woo');
 
 				return parts.filter(function (part) {
 					return part.priority == filterNum;
@@ -128,7 +126,6 @@ export class PartStatusDashboardComponent implements OnInit {
 		};
 
 		this.store.dispatch(new AddPart(part));
-		this.updatePartsList();
 	}
 
 
