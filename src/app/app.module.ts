@@ -15,25 +15,29 @@ import {BsDropdownModule} from 'ngx-bootstrap';
 
 import {RouterModule} from '@angular/router';
 
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
-import { partReducer } from './state-management/reducers/part.reducers';
+import {partReducer} from './state-management/reducers/part.reducers';
 
-import { appRoutes } from './routes';
+import {appRoutes} from './routes';
+
+
+export const COMPONENTS = [
+	AppComponent,
+	HomePageComponent,
+	HeaderComponent,
+	PartViewComponent,
+	PartCommentComponent,
+	PartMachineComponent,
+	CommentComponent,
+	PartCommentListComponent,
+	PartStatusDashboardComponent
+];
+
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		HomePageComponent,
-		HeaderComponent,
-		PartViewComponent,
-		PartCommentComponent,
-		PartMachineComponent,
-		CommentComponent,
-		PartCommentListComponent,
-		PartStatusDashboardComponent
-	],
+	declarations: COMPONENTS,
 	imports: [
 		BrowserModule,
 		BsDropdownModule.forRoot(),
@@ -41,7 +45,7 @@ import { appRoutes } from './routes';
 			appRoutes,
 			{enableTracing: false} // <-- debugging purposes only
 		),
-		StoreModule.forRoot({ part: partReducer }),
+		StoreModule.forRoot({part: partReducer}),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25 //  Retains last 25 states
 		})

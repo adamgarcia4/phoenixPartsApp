@@ -1,80 +1,51 @@
 import { Action } from '@ngrx/store';
+import { Part } from '../models/part';
+import { type } from '../util/util';
 
-export interface PartState {
-	id: number;
-	name: String;
-	number: String;
-	assemblyId: number;
-	priority: number;
+/**
+ * For each action type in an action group, make a simple
+ * enum object for all of this group's action types.
+ *
+ * The 'type' utility function coerces strings into string
+ * literal types and runs a simple check to guarantee all
+ * action types in the application are unique.
+ */
 
-}
+export const ActionTypes = {
+	ADD_PART: type('[Part] Add Part'),
+	SET_PRIORITY_FILTER: type('[Part] Set Priority Filter'),
+};
+//
+// export const ActionTypes = {
+// 	SEARCH:           type('[Book] Search'),
+// 	SEARCH_COMPLETE:  type('[Book] Search Complete'),
+// 	LOAD:             type('[Book] Load'),
+// 	SELECT:           type('[Book] Select'),
+// };
 
-export class ActionTypes {
-	static ADD_PART = 'ADD_PART';
-}
+/**
+ * Every action is comprised of at least a type and an optional
+ * payload. Expressing actions as classes enables powerful
+ * type checking in reducer functions.
+ *
+ * See Discriminated Unions: https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
+ */
+
 
 export class AddPart implements Action {
-	public type = ActionTypes.ADD_PART;
-	constructor(public payload: { part: PartState }) { }
+	type = ActionTypes.ADD_PART;
+	constructor(public payload: Part) { }
 }
 
-export type PartActions = AddPart
-// export type Action =
-// | RecievedAppVersion
-// | UpdateAppVersion
-// | CheckVersion
-// | ExpandSidebar
-// | CollapseSidebar
-// | ToggleSidebar
-// | ThemeChange;
+export class SetPriorityFilter implements Action {
+	type = ActionTypes.SET_PRIORITY_FILTER;
+	constructor(public payload: number) {}
+}
 
-// 	static SIDEBAR_EXPAND = '[APP LAYOUT] SIDEBAR_EXPAND';
-// 	static SIDEBAR_COLLAPSE = '[APP LAYOUT] SIDEBAR_COLLAPSE';
-// 	static SIDEBAR_TOGGLE = '[APP LAYOUT] SIDEBAR_TOGGLE';
-//
-// 	static APP_VERSION_RECIEVED = '[APP] APP_VERSION_RECIEVED';
-// 	static APP_UPDATE_VERSION = '[APP] APP_UPDATE_VERSION';
-// 	static APP_CHECK_VERSION = '[APP] APP_CHECK_VERSION';
-//
-// 	static APP_THEME_CHANGE = '[App Theme] APP_THEME_CHANGE';
-// }
-// export class RecievedAppVersion implements Action {
-// 	public type = ActionTypes.APP_VERSION_RECIEVED;
-// 	constructor(public payload: any) { }
-// }
-// export class UpdateAppVersion implements Action {
-// 	public type = ActionTypes.APP_UPDATE_VERSION;
-// 	public payload = '';
-// }
-// export class CheckVersion implements Action {
-// 	public type = ActionTypes.APP_CHECK_VERSION;
-// 	public payload = '';
-// }
-// export class ExpandSidebar implements Action {
-// 	public type = ActionTypes.SIDEBAR_EXPAND;
-// 	public payload = true;
-// }
-//
-// export class CollapseSidebar implements Action {
-// 	public type = ActionTypes.SIDEBAR_COLLAPSE;
-// 	public payload = false;
-// }
-//
-// export class ToggleSidebar implements Action {
-// 	public type = ActionTypes.SIDEBAR_TOGGLE;
-// 	public payload = '';
-// }
-//
-// export class ThemeChange implements Action {
-// 	public type = ActionTypes.APP_THEME_CHANGE;
-// 	constructor(public payload: string) { }
-// }
-//
-// export type Action =
-// | RecievedAppVersion
-// | UpdateAppVersion
-// | CheckVersion
-// | ExpandSidebar
-// | CollapseSidebar
-// | ToggleSidebar
-// | ThemeChange;
+/**
+ * Export a type alias of all actions in this action group
+ * so that reducers can easily compose action types
+ */
+
+export type Actions
+	= AddPart | SetPriorityFilter

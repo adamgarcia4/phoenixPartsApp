@@ -1,27 +1,34 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
 
+import {Part} from '../state-management/models/part';
 
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { INCREMENT, DECREMENT, RESET } from '../state-management/reducers/part.reducers';
-import { AddPart } from '../state-management/actions/part.actions';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+import {AddPart, SetPriorityFilter} from '../state-management/actions/part.actions';
+import {Subscription} from "rxjs";
+import {withLatestFrom, map} from 'rxjs/operators';
+
 
 @Component({
 	selector: 'app-part-status-dashboard',
 	templateUrl: './part-status-dashboard.component.html',
 	styleUrls: ['./part-status-dashboard.component.css']
 })
-export class PartStatusDashboardComponent implements OnInit, OnChanges {
+export class PartStatusDashboardComponent implements OnInit {
 
-	filteredStatus;
+	filteredStatus$: any;
 
-	count$: Observable<number>;
+	state$: Observable<any>;
 
-	data =
+	parts$: Observable<Part>;
+
+	filteredPartsList$: Observable<Part>;
+
+	data: Part[] =
 		[
 			{
-				"id": 0,
-				"name": "Part 0",
+				"id": 100,
+				"name": "Part 100",
 				"number": "4-2018-00-001",
 				"assemblyId": 1,
 				priority: 0
@@ -63,58 +70,66 @@ export class PartStatusDashboardComponent implements OnInit, OnChanges {
 			}
 		];
 
-
-	newPart = {
-		"id": 1000,
-		"name": "Part 0",
-		"number": "4-2018-00-001",
-		"assemblyId": 1,
-		priority: 0
-	};
-
-
-
-	filteredParts;
-
 	constructor(private store: Store<any>) {
-		this.filteredStatus = '1';
 
-		this.count$ = store.select('counter');
+		this.state$ = store.select('part');
 
-		this.filteredParts = this.data;
-	}
-
-	changePriorityFilter(target) {
-		this.filteredStatus = target.value;
-		this.filteredParts = this.filterPartStatus(this.data, this.filteredStatus);
-	}
-
-	// Pass in raw part List and filter status.  Returns filtered list
-	filterPartStatus(partList, filterStatus) {
-		if(filterStatus == 0) {
-			return partList;
-		}
-
-		return partList.filter(function(part) {
-			if(part.priority == filterStatus) {
-				return true;
-			} else {
-				return false;
-			}
+		// Subscription when new parts arrive.  Unfiltered
+		this.parts$ = this.state$.map(function (state) {
+			console.log('Parts are: ');
+			console.log(state.parts);
+			return state.parts;
 		});
-	}
 
-	addCounter() {
-		this.store.dispatch({ type: INCREMENT });
-		var part = this.newPart;
-		this.store.dispatch(new AddPart({part}))
+		// Filtered Status for part filtering
+		this.filteredStatus$ = this.state$.map(function (state) {
+			console.log('priority filter is: ' + state.priorityFilter);
+			return state.priorityFilter;
+		});
+
+		// Filtered Parts List.  This configuration updates filtered list whenever a new priority value is emitted
+		// https://stackoverflow.com/questions/17745478/filter-an-observable-using-values-from-another-observable
+		// https://www.learnrxjs.io/operators/combination/withlatestfrom.html
+		this.filteredPartsList$ = this.parts$.pipe(
+			withLatestFrom(this.filteredStatus$),
+			map(([parts, filterNum]) => {
+				console.log('woo');
+
+				return parts.filter(function (part) {
+					return part.priority == filterNum;
+				});
+			})
+		);
 	}
 
 	ngOnInit() {
-		this.filteredStatus = 1;
+
 	}
 
-	ngOnChanges() {
+
+	updatePartsList() {
+		// this.filterPartStatus(this.data, this.filteredStatus);
 	}
+
+	setFilteredStatus(status) {
+		console.log('filtered Status updating... : ' + status);
+		this.store.dispatch(new SetPriorityFilter(status));
+	}
+
+	addPart() {
+
+		// Will Replace with actual part info.  Probably gonna be in a diff component anyways.
+		var part = {
+			"id": 0,
+			"name": "Part 0",
+			"number": "4-2018-00-001",
+			"assemblyId": 1,
+			priority: 0
+		};
+
+		this.store.dispatch(new AddPart(part));
+		this.updatePartsList();
+	}
+
 
 }

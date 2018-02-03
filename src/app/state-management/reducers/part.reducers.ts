@@ -1,22 +1,17 @@
 // counter.ts
-import { Action } from '@ngrx/store';
-import { ActionTypes,PartActions } from '../actions/part.actions'
+import {Action} from '@ngrx/store';
 
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-export const RESET = 'RESET';
+import {ActionTypes} from '../actions/part.actions'
 
-export interface PartState {
-	id: number;
-	name: String;
-	number: String;
-	assemblyId: number;
-	priority: number;
+import {Part} from '../models/part';
+import {Actions} from '../actions/part.actions';
 
+export interface State {
+	priorityFilter: number;
+	parts: Part[];
 }
 
-
-const initialState: PartState[] =
+const partsList: Part[] =
 	[
 		{
 			"id": 0,
@@ -62,22 +57,55 @@ const initialState: PartState[] =
 		}
 	];
 
-export function partReducer(state = initialState , action: PartActions) {
+const initialState: State = {
+	priorityFilter: 0,
+	parts: partsList
+};
+
+
+export function partReducer(state = initialState, action: Actions) {
 
 	switch (action.type) {
 		case ActionTypes.ADD_PART:
 
-			var newPart = {
-				id: 1,
-				name: 'Part 1',
-				number: '1111'
-			}
-			return [action.payload.part, ...state];
+			//TODO: Currently Creating random part.  Replace this with payload
+			return Object.assign({}, state, {parts:[createPart(), ... state.parts]});
 
-		case RESET:
-			return 0;
+		case ActionTypes.SET_PRIORITY_FILTER:
+
+			var partStatus = action.payload;
+
+			return Object.assign({}, state, {priorityFilter: partStatus});
 
 		default:
 			return state;
 	}
 }
+
+function createPart() {
+
+	var randomNum = Math.floor(Math.random() * 10000);
+
+	var newPart: Part = {
+		id: randomNum,
+		name: "Part" + randomNum,
+		number: String(randomNum),
+		assemblyId: 0,
+		priority: 0
+	};
+
+	return newPart;
+
+}
+
+// export interface State { //TODO: Generic State type as described in @ngrx/entity
+// 	ids: string[];
+// 	entities: {[id: string]: Part};
+// 	// selectedBookId: string | null;
+// }
+// ;
+
+// const initialState: State = {
+// 	ids: [],
+// 	entities: {}
+// };
