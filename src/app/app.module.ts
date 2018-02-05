@@ -21,6 +21,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {partReducer} from './state-management/reducers/part.reducers';
 
 import {appRoutes} from './routes';
+import {PartListViewComponent} from "./part-list-view/part-list-view.component";
 
 
 export const COMPONENTS = [
@@ -32,7 +33,8 @@ export const COMPONENTS = [
 	PartMachineComponent,
 	CommentComponent,
 	PartCommentListComponent,
-	PartStatusDashboardComponent
+	PartStatusDashboardComponent,
+	PartListViewComponent
 ];
 
 

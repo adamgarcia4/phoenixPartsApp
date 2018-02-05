@@ -14,6 +14,8 @@ import { type } from '../util/util';
 export const ActionTypes = {
 	ADD_PART: type('[Part] Add Part'),
 	SET_PRIORITY_FILTER: type('[Part] Set Priority Filter'),
+	SET_SELECTED_PART: type('[Part] Select Part'),
+	DELETE_PART: type('[Part] Delete Part')
 };
 //
 // export const ActionTypes = {
@@ -37,9 +39,22 @@ export class AddPart implements Action {
 	constructor(public payload: Part) { }
 }
 
+// Constructor is the priority number TODO: Change to ENUM?
 export class SetPriorityFilter implements Action {
 	type = ActionTypes.SET_PRIORITY_FILTER;
 	constructor(public payload: number) {}
+}
+
+// Constructor is the part number which is a string
+export class SetSelectedPart implements Action {
+	type = ActionTypes.SET_SELECTED_PART;
+	constructor(public payload: string) {}
+}
+
+// payload is the part number
+export class DeletePart implements Action {
+	type = ActionTypes.DELETE_PART;
+	constructor(public payload: string) {}
 }
 
 /**
@@ -48,4 +63,4 @@ export class SetPriorityFilter implements Action {
  */
 
 export type Actions
-	= AddPart | SetPriorityFilter
+	= AddPart | SetPriorityFilter | SetSelectedPart | DeletePart

@@ -2,37 +2,72 @@
 	part-status-dashboard works!
 </p>
 
-<div class="form-group">
-	<label for="exampleFormControlSelect1">Example select</label>
-	<select class="form-control" id="exampleFormControlSelect1" (change)="setFilteredStatus($event.target.value)">
-		<option>0</option>
-		<option>1</option>
-		<option>2</option>
-		<option>3</option>
-		<option>4</option>
-		<option>5</option>
-	</select>
+<div class="row">
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="exampleFormControlSelect1">Priority</label>
+			<select class="form-control" id="exampleFormControlSelect1"
+			        (change)="setFilteredStatus($event.target.value)">
+				<option>0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="exampleFormControlSelect1">Status</label>
+			<select class="form-control" id="exampleFormControlSelect2"
+			        (change)="setFilteredStatus($event.target.value)">
+				<option>0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="exampleFormControlSelect1">Machinist Assigned</label>
+			<select class="form-control" id="exampleFormControlSelect3"
+			        (change)="setFilteredStatus($event.target.value)">
+				<option>0</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
 </div>
 
 <!--{{parts$ | async}}-->
 
-{{filteredPartsList$ | async}}
+<!--{{filteredPartsList$ | async}}-->
 
 <div class="row">
 
-	<div *ngFor="let part of filteredPartsList$ | async" class="col-md-4" >
-			<div class="card bg-light mb-3" style="max-width: 18rem;">
-				<div class="card-header">
-					{{part.name}} | {{part.number}}
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">{{part.priority}}</h5>
-					<p class="card-text"></p>
-				</div>
-				<div class="card-footer text-muted">
-					<button class="btn btn-primary btn-sm" routerLink="/part">Part Details</button>
-				</div>
+	<div *ngFor="let part of filteredPartsList$ | async" class="col-md-4">
+		<div class="card bg-light mb-3" style="max-width: 18rem;">
+			<div class="card-header">
+				{{part.name}} | {{part.number}}
 			</div>
+			<div class="card-body">
+				<h5 class="card-title">{{part.priority}}</h5>
+				<p class="card-text"></p>
+			</div>
+			<div class="card-footer text-muted">
+				<button class="btn btn-primary btn-sm" routerLink="/part">Part Details</button>
+			</div>
+		</div>
 	</div>
 
 
