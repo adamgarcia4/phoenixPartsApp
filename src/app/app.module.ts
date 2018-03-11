@@ -1,6 +1,11 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
 
+import {Http, HttpModule} from '@angular/http'
 
 import {AppComponent} from './app.component';
 import {HomePageComponent} from './home-page/home-page.component';
@@ -18,10 +23,18 @@ import {RouterModule} from '@angular/router';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
+import {UserEffects} from './state-management/effects/user.effects';
+
 import {partReducer} from './state-management/reducers/part.reducers';
+
+import {EffectsModule} from '@ngrx/effects';
 
 import {appRoutes} from './routes';
 import {PartListViewComponent} from "./part-list-view/part-list-view.component";
+import {AuthService} from "./services/auth.service";
+import {userReducer} from "./state-management/reducers/user.reducers";
+import {LoginPageComponent} from "./login-page/login-page.component";
+import {AuthGuardService} from "./services/auth-service.service";
 
 
 export const COMPONENTS = [
@@ -34,7 +47,8 @@ export const COMPONENTS = [
 	CommentComponent,
 	PartCommentListComponent,
 	PartStatusDashboardComponent,
-	PartListViewComponent
+	PartListViewComponent,
+	LoginPageComponent
 ];
 
 
@@ -44,15 +58,22 @@ export const COMPONENTS = [
 		BrowserModule,
 		BsDropdownModule.forRoot(),
 		RouterModule.forRoot(
-			appRoutes,
-			{enableTracing: false} // <-- debugging purposes only
+			appRoutes
 		),
-		StoreModule.forRoot({part: partReducer}),
+		StoreModule.forRoot(
+			{
+				part: partReducer,
+				user: userReducer
+			}),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25 //  Retains last 25 states
-		})
+		}),
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule,
+		AngularFirestoreModule,
+		EffectsModule.forRoot([UserEffects]),
 	],
-	providers: [],
+	providers: [AuthService, AuthGuardService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

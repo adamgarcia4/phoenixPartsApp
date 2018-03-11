@@ -3,7 +3,12 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 
 import {AddPart} from "../state-management/actions/part.actions";
-import {Observable} from "rxjs";
+
+import {GetUser, FacebookLogin} from '../state-management/actions/user.actions'
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
 	selector: 'app-header',
@@ -12,7 +17,25 @@ import {Observable} from "rxjs";
 })
 export class HeaderComponent implements OnInit {
 
-	constructor(private store: Store<any>) {
+	private user: Observable<firebase.User>;
+
+	userDetails: any;
+
+
+	constructor(private store: Store<any>, private _firebaseAuth: AngularFireAuth) {
+		this.user = _firebaseAuth.authState;
+
+		this.user.subscribe(
+			(user) => {
+				if (user) {
+					this.userDetails = user;
+				}
+				else {
+					console.log('logout');
+					this.userDetails = null;
+				}
+			}
+		);
 	}
 
 	ngOnInit() {
@@ -30,6 +53,16 @@ export class HeaderComponent implements OnInit {
 		};
 
 		this.store.dispatch(new AddPart(part));
+	}
+
+	facebookSignin() {
+		console.log('buttonPressed');
+		this.store.dispatch(new FacebookLogin());
+		// this.store.dispatch(new Authenticate('payload'));
+	}
+
+	signOutWithTwitter() {
+		return this._firebaseAuth.auth.signOut();
 	}
 
 }

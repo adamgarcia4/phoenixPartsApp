@@ -1,0 +1,45 @@
+<div class="table-responsive">
+	<table class="table">
+		<!--<caption>List of users</caption>-->
+		<thead>
+		<tr>
+			<!--Drawn By	Machines Needed 	Stock Ordered	Part Location-->
+			<th scope="col">Part Name</th>
+			<th scope="col">Part Number</th>
+			<!--<th scope="col">Part Per Robot</th>-->
+			<th scope="col">Parts Quantity Total</th>
+			<!--<th scope="col">Stock Material</th>-->
+			<!--<th scope="col">Cut Lg (in)</th>-->
+			<th scope="col">Status</th>
+			<th scope="col">Drawn By</th>
+			<!--<th scope="col">Machines Needed</th>-->
+			<th scope="col">Stock Ordered</th>
+			<th scope="col">Part Location</th>
+			<th scope="col">Edit/Delete</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let part of parts$ | async; let i=index">
+			<th scope="row" nowrap>{{part.name}}</th>
+			<td nowrap>{{part.number}}</td>
+			<!--<td nowrap>{{part.partsPerRobot}}</td>-->
+			<td nowrap>{{part.partsPerRobot * 2}}</td>
+			<!--<td nowrap>{{part.stockMaterial}}</td>-->
+			<!--<td nowrap>{{part.cutLg}}</td>-->
+			<td nowrap>{{part.status}}</td>
+			<td nowrap>{{part.drawnBy}}</td>
+			<!--<td nowrap>{{part.machinesNeeded}}</td>-->
+			<td nowrap>{{part.stockOrdered}}</td>
+			<td nowrap>{{part.partLocation}}</td>
+			<td>
+				<a class="btn btn-primary btn-sm"  routerLink="/part/{{part.number}}" (click)="goToPart(part.number)">
+					<i class="fas fa-pencil-alt"></i>
+				</a>
+				<a class="btn btn-danger btn-sm"  (click)="deletePart(part.number)">
+					<i class="fas fa-trash-alt"></i>
+				</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>

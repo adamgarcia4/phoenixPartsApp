@@ -1,3 +1,6 @@
+var base64 = require('base-64');
+var utf8 = require('utf8');
+
 // Part Name
 // Part Number
 // Part Per Robot
@@ -33,12 +36,14 @@ export interface Part {
 
 export function newPart() {
 
-	var randomNum = Math.floor(Math.random() * 10000);
+	var randomNum = Math.floor(Math.random() * 1000);
+
+	var number = '4-2018-01-' + String(randomNum);
 
 	var newPart: Part = {
 		id: i,
 		name: "Part " + randomNum,
-		number: '4-2018-01-' + String(randomNum),
+		number: number,
 		partsPerRobot: 2,
 		quantity: 4,
 		stockMaterial: 'Aluminum',
@@ -56,6 +61,20 @@ export function newPart() {
 
 	return newPart;
 
+}
+
+export function createHash(textToHash) {
+	var bytes = utf8.encode(textToHash);
+	var encoded = base64.encode(bytes);
+	// console.log(encoded);
+	return encoded;
+}
+
+export function decodeHash(hash) {
+	var bytes = base64.decode(hash);
+	var text = utf8.decode(bytes);
+	// console.log(text);
+	return text;
 }
 
 // export interface Book {

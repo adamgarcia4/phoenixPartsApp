@@ -14,11 +14,7 @@ export interface State {
 
 var i = 0;
 
-const partsList: Part[] = [
-	newPart(),
-	newPart(),
-	newPart()
-];
+const partsList: Part[] = [];
 
 // [
 // 	{
@@ -94,12 +90,11 @@ export function partReducer(state = initialState, action: Actions) {
 
 		case ActionTypes.DELETE_PART:
 
-			var test = action.payload;
+			var partNumber = action.payload;
 			var oldParts = state.parts;
-			var outer = this;
 			var newParts = oldParts.filter(function (part) {
 
-				if (part.number === test) {
+				if (part.number === partNumber) {
 					return false;
 				} else {
 					return true;
