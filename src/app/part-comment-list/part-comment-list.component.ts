@@ -14,19 +14,19 @@ export class PartCommentListComponent implements OnInit {
 
 	ngOnInit() {
 		this.data = {
-			imgURL: "https://bootdey.com/img/Content/user_1.jpg",
+			imgURL: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
 			date: "Dec 19, 2014 ",
 			name: "JohnDoe",
 			text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet",
 			children: [
 				{
-					imgURL: "https://bootdey.com/img/Content/user_2.jpg",
+					imgURL: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
 					date: "Dec 20, 2014 ",
 					name: "Alice",
 					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
 				},
 				{
-					imgURL: "https://bootdey.com/img/Content/user_2.jpg",
+					imgURL: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
 					date: "Dec 20, 2014 ",
 					name: "Alice",
 					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"

@@ -28,8 +28,8 @@ export class PartListViewComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	goToPart(i) {
-		this._store.dispatch(new SetSelectedPart(i));
+	goToPart(part) {
+		this._store.dispatch(new SetSelectedPart(part));
 
 	}
 

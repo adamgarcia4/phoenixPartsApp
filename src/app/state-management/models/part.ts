@@ -16,6 +16,19 @@ var utf8 = require('utf8');
 // Unique Part Counter
 var i = 0;
 
+export interface machineNeededEntry {
+	completed: boolean;
+	name: string;
+	assignedTo: string;
+}
+
+export interface partComment {
+	picURL: string;
+	date: string;
+	name: string;
+	body: string;
+}
+
 export interface Part {
 	id: number;
 	name: string;
@@ -26,11 +39,12 @@ export interface Part {
 	cutLg?: string;
 	status?: string;
 	drawnBy?: string;
-	machinesNeeded?: string;
+	machinesNeeded?: machineNeededEntry[];
 	stockOrdered?: string;
 	partLocation?: string;
 	assemblyId: number;
 	priority: number;
+	pictureURL?: string;
 
 }
 
@@ -43,6 +57,7 @@ export function newPart() {
 	var newPart: Part = {
 		id: i,
 		name: "Part " + randomNum,
+		pictureURL: "http://khengineering.github.io/RoboRio/Images/pdpinfo.png",
 		number: number,
 		partsPerRobot: 2,
 		quantity: 4,
@@ -50,7 +65,18 @@ export function newPart() {
 		cutLg: '1 in',
 		status: 'To Machine',
 		drawnBy: 'Adam',
-		machinesNeeded: 'Lathe, Mill, Bandsaw',
+		machinesNeeded: [
+			{
+				completed: false,
+				assignedTo: 'Adam',
+				name: 'CNC Mill'
+			},
+			{
+				completed: true,
+				assignedTo: 'Sahar',
+				name: 'Chopsaw'
+			},
+		],
 		stockOrdered: 'yes',
 		partLocation: 'B14',
 		assemblyId: 0,

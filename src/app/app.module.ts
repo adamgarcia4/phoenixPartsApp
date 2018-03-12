@@ -36,6 +36,9 @@ import {userReducer} from "./state-management/reducers/user.reducers";
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {AuthGuardService} from "./services/auth-service.service";
 
+// Pipes
+import {PriorityPipe} from "./pipes/priorityPipe/priority-pipe.pipe";
+
 
 export const COMPONENTS = [
 	AppComponent,
@@ -48,7 +51,11 @@ export const COMPONENTS = [
 	PartCommentListComponent,
 	PartStatusDashboardComponent,
 	PartListViewComponent,
-	LoginPageComponent
+	LoginPageComponent,
+
+
+
+	PriorityPipe
 ];
 
 

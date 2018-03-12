@@ -32,7 +32,7 @@
 			<td nowrap>{{part.stockOrdered}}</td>
 			<td nowrap>{{part.partLocation}}</td>
 			<td>
-				<a class="btn btn-primary btn-sm"  routerLink="/part/{{part.number}}" (click)="goToPart(part.number)">
+				<a class="btn btn-primary btn-sm"  routerLink="/part/{{part.number}}" (click)="goToPart(part)">
 					<i class="fas fa-pencil-alt"></i>
 				</a>
 				<a class="btn btn-danger btn-sm"  (click)="deletePart(part.number)">

@@ -1,24 +1,24 @@
 <div class="row">
 	<div class="col-md-6 col-s-12">
-		<h2>Part Name: Drive Shaft</h2>
+		<h2>Part Name: {{selectedPart?.name}}</h2>
 	</div>
 	<div class="col-md-3 col-s-6">
-		<h4>Status: <span class="badge badge-info">Machining</span></h4>
+		<h4>Status: <span class="badge badge-info">{{selectedPart?.status}}</span></h4>
 	</div>
 	<div class="col-md-3 col-s-6">
-		<h4>Priority: <span class="badge badge-danger">High</span></h4>
+		<h4>Priority: <span class="badge badge-danger">{{selectedPart?.priority | priorityPipe}}</span></h4>
 	</div>
 </div>
 
 <div class="row">
 	<!--<div class="text-center">-->
 		<div class="col-md-6">
-			<img src="https://www.sahirz4.com/assets/images/default.jpg" class="img-fluid mx-auto" alt="Responsive image">
+			<img src="{{selectedPart?.pictureURL}}" class="img-fluid mx-auto" alt="Responsive image">
 		</div>
 	<!--</div>-->
 	<div class="col-md-6">
 		<br><br>
-		<app-part-machine></app-part-machine>
+		<app-part-machine [machineList]="selectedPart.machinesNeeded"></app-part-machine>
 	</div>
 </div>
 

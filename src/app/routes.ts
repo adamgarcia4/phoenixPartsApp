@@ -10,7 +10,7 @@ import {PartListViewComponent} from "./part-list-view/part-list-view.component";
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {
 	AuthGuardService as AuthGuard
-} from './auth-guard.service';
+} from './guards/auth/auth-guard.service';
 
 
 

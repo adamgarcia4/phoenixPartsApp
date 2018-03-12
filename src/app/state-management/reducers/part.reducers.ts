@@ -1,5 +1,5 @@
-// counter.ts
-import {Action} from '@ngrx/store';
+
+import {Action, createSelector} from '@ngrx/store';
 
 import {ActionTypes} from '../actions/part.actions'
 
@@ -9,12 +9,12 @@ import {Actions} from '../actions/part.actions';
 export interface State {
 	priorityFilter: number;
 	parts: Part[];
-	selectedPart: string;
+	selectedPart: Part;
 }
 
 var i = 0;
 
-const partsList: Part[] = [];
+const partsList: Part[] = [newPart()];
 
 // [
 // 	{
@@ -64,9 +64,14 @@ const partsList: Part[] = [];
 const initialState: State = {
 	priorityFilter: 0,
 	parts: partsList,
-	selectedPart: ''
+	selectedPart: null
 };
 
+// import { createSelector } from '@ngrx/store';
+// export const selectFeature = (state: AppState) => state.feature;
+// export const selectFeatureCount = createSelector(selectFeature, (state: FeatureState) => state.counter);
+export const selectPart = (partState) => partState.part;
+export const selectPartSelector = createSelector(selectPart, (state) => state.selectedPart);
 
 export function partReducer(state = initialState, action: Actions) {
 
@@ -84,9 +89,9 @@ export function partReducer(state = initialState, action: Actions) {
 
 		case ActionTypes.SET_SELECTED_PART:
 
-			var partNumber = action.payload;
+			var part = action.payload;
 
-			return Object.assign({}, state, {selectedPart: partNumber});
+			return Object.assign({}, state, {selectedPart: part});
 
 		case ActionTypes.DELETE_PART:
 
