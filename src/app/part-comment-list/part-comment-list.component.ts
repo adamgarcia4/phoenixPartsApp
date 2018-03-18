@@ -1,38 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
+// Model
+import { PartComment } from '../state-management/models/part';
+
 
 @Component({
 	selector: 'app-part-comment-list',
 	templateUrl: './part-comment-list.component.html',
 	styleUrls: ['./part-comment-list.component.css']
 })
+
 export class PartCommentListComponent implements OnInit {
 
-	data;
+	// Part Comments are passed into this top level Comment Component.
+	// This component displays top level info and recurses into children.
+	@Input('data') partComments: PartComment[];
 
 	constructor() {
 	}
 
 	ngOnInit() {
-		this.data = {
-			imgURL: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
-			date: "Dec 19, 2014 ",
-			name: "JohnDoe",
-			text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet",
-			children: [
-				{
-					imgURL: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
-					date: "Dec 20, 2014 ",
-					name: "Alice",
-					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
-				},
-				{
-					imgURL: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
-					date: "Dec 20, 2014 ",
-					name: "Alice",
-					text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
-				}
-			]
-		}
+		console.log(this.partComments);
 	}
 
 }

@@ -13,7 +13,6 @@ import {HeaderComponent} from './header/header.component';
 import {PartViewComponent} from './part-view/part-view.component';
 import {PartCommentComponent} from './part-comment/part-comment.component';
 import {PartMachineComponent} from './part-machine/part-machine.component';
-import {CommentComponent} from './comment/comment.component';
 import {PartCommentListComponent} from './part-comment-list/part-comment-list.component';
 import {PartStatusDashboardComponent} from './part-status-dashboard/part-status-dashboard.component';
 import {BsDropdownModule} from 'ngx-bootstrap';
@@ -47,7 +46,6 @@ export const COMPONENTS = [
 	PartViewComponent,
 	PartCommentComponent,
 	PartMachineComponent,
-	CommentComponent,
 	PartCommentListComponent,
 	PartStatusDashboardComponent,
 	PartListViewComponent,

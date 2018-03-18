@@ -1,32 +1,24 @@
+// Imports
 var base64 = require('base-64');
 var utf8 = require('utf8');
 
-// Part Name
-// Part Number
-// Part Per Robot
-// Parts Quantity Total
-// Stock Material
-// Cut Lg (in)
-// Status
-// Drawn By
-// Machines Needed
-// Stock Ordered
-// Part Location
-
-// Unique Part Counter
+// TODO: Unique Part Counter used only to simulate unique part numbering on Client-side.  Will remove once backend working.
 var i = 0;
 
+
+// Interfaces needed to fully define post structure
 export interface machineNeededEntry {
 	completed: boolean;
 	name: string;
 	assignedTo: string;
 }
 
-export interface partComment {
-	picURL: string;
+export interface PartComment {
+	imgUrl: string;
 	date: string;
 	name: string;
 	body: string;
+	children?: PartComment[];
 }
 
 export interface Part {
@@ -45,6 +37,7 @@ export interface Part {
 	assemblyId: number;
 	priority: number;
 	pictureURL?: string;
+	comments?: PartComment[];
 
 }
 
@@ -80,13 +73,45 @@ export function newPart() {
 		stockOrdered: 'yes',
 		partLocation: 'B14',
 		assemblyId: 0,
-		priority: 0
+		priority: 0,
+		comments: [
+			{
+				imgUrl: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
+				date: dateNow(),
+				name: "Adam Garcia",
+				body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet",
+				children: [
+					{
+						imgUrl: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
+						date: dateNow(),
+						name: "Adam Garcia",
+						body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
+					},
+					{
+						imgUrl: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAlZAAAAJGQ3ZGE2ZGY1LWMyNDctNGNiZi05Y2RlLTlhMGNkYmQzNWQyZg.jpg",
+						date: dateNow(),
+						name: "Adam Garcia",
+						body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amet"
+					}
+				]
+			}
+		]
 	};
 
 	i++;
 
 	return newPart;
 
+}
+
+function dateNow() {
+	var currentdate = new Date();
+	return currentdate.getDate() + "/"
+		+ (currentdate.getMonth() + 1) + "/"
+		+ currentdate.getFullYear() + " @ "
+		+ currentdate.getHours() + ":"
+		+ currentdate.getMinutes() + ":"
+		+ currentdate.getSeconds();
 }
 
 export function createHash(textToHash) {
