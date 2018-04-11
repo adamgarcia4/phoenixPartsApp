@@ -11,10 +11,14 @@ import {LoginPageComponent} from "./login-page/login-page.component";
 import {
 	AuthGuardService as AuthGuard
 } from './guards/auth/auth-guard.service';
+import {LoginFormComponent} from "./login-form/login-form.component";
 
 
 
 export const appRoutes: Routes = [
+	{
+		path: '', component: LoginFormComponent
+	},
 	{
 		path: '', component: PartListViewComponent
 	},

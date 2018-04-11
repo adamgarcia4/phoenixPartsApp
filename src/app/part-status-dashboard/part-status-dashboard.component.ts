@@ -104,7 +104,6 @@ export class PartStatusDashboardComponent implements OnInit {
 
 	}
 
-
 	updatePartsList() {
 		// this.filterPartStatus(this.data, this.filteredStatus);
 	}

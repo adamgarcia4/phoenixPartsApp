@@ -37,6 +37,7 @@ import {AuthGuardService} from "./services/auth-service.service";
 
 // Pipes
 import {PriorityPipe} from "./pipes/priorityPipe/priority-pipe.pipe";
+import {LoginFormComponent} from "./login-form/login-form.component";
 
 
 export const COMPONENTS = [
@@ -50,8 +51,7 @@ export const COMPONENTS = [
 	PartStatusDashboardComponent,
 	PartListViewComponent,
 	LoginPageComponent,
-
-
+	LoginFormComponent,
 
 	PriorityPipe
 ];
