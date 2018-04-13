@@ -22,7 +22,9 @@ export class AuthService {
 
 
 	public isAuthenticated(): boolean {
-		console.log('auth is: ' + this.loggedInStatus);
-		return this.loggedInStatus;
+
+		return true;
+		// console.log('auth is: ' + this.loggedInStatus);
+		// return this.loggedInStatus;
 	}
 }

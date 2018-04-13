@@ -1,0 +1,16 @@
+.login-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    transform: translate(-50%, -50%);
+}
+
+.avatar {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    top: -50px;
+    left: calc(50% - 50px);
+}

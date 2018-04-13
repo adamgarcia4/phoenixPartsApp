@@ -5,8 +5,6 @@ import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 
-import {Http, HttpModule} from '@angular/http'
-
 import {AppComponent} from './app.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {HeaderComponent} from './header/header.component';
@@ -30,14 +28,17 @@ import {EffectsModule} from '@ngrx/effects';
 
 import {appRoutes} from './routes';
 import {PartListViewComponent} from "./part-list-view/part-list-view.component";
-import {AuthService} from "./services/auth.service";
+
 import {userReducer} from "./state-management/reducers/user.reducers";
 import {LoginPageComponent} from "./login-page/login-page.component";
-import {AuthGuardService} from "./services/auth-service.service";
 
+/// / import {AuthGuardService} from "./services/auth-service.service";
+
+import { AuthGuardService } from './core/auth-guard.service';
 // Pipes
 import {PriorityPipe} from "./pipes/priorityPipe/priority-pipe.pipe";
-import {LoginFormComponent} from "./login-form/login-form.component";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthModule} from "./auth/auth.module";
 
 
 export const COMPONENTS = [
@@ -51,7 +52,6 @@ export const COMPONENTS = [
 	PartStatusDashboardComponent,
 	PartListViewComponent,
 	LoginPageComponent,
-	LoginFormComponent,
 
 	PriorityPipe
 ];
@@ -77,8 +77,11 @@ export const COMPONENTS = [
 		AngularFireAuthModule,
 		AngularFirestoreModule,
 		EffectsModule.forRoot([UserEffects]),
+		FormsModule,
+		ReactiveFormsModule,
+		AuthModule
 	],
-	providers: [AuthService, AuthGuardService],
+	providers: [AuthGuardService], //AuthService
 	bootstrap: [AppComponent]
 })
 export class AppModule {
