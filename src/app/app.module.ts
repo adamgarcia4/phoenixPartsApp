@@ -17,19 +17,10 @@ import {BsDropdownModule} from 'ngx-bootstrap';
 
 import {RouterModule} from '@angular/router';
 
-import {StoreModule} from '@ngrx/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-
-import {UserEffects} from './state-management/effects/user.effects';
-
-import {partReducer} from './state-management/reducers/part.reducers';
-
-import {EffectsModule} from '@ngrx/effects';
-
 import {appRoutes} from './routes';
 import {PartListViewComponent} from "./part-list-view/part-list-view.component";
 
-import {userReducer} from "./state-management/reducers/user.reducers";
+// import {userReducer} from "./state-management/reducers/user.reducers";
 import {LoginPageComponent} from "./login-page/login-page.component";
 
 /// / import {AuthGuardService} from "./services/auth-service.service";
@@ -39,6 +30,7 @@ import { AuthGuardService } from './core/auth-guard.service';
 import {PriorityPipe} from "./pipes/priorityPipe/priority-pipe.pipe";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthModule} from "./auth/auth.module";
+import {StateManagementModule} from "./state-management/state-management.module";
 
 
 export const COMPONENTS = [
@@ -65,21 +57,14 @@ export const COMPONENTS = [
 		RouterModule.forRoot(
 			appRoutes
 		),
-		StoreModule.forRoot(
-			{
-				part: partReducer,
-				user: userReducer
-			}),
-		StoreDevtoolsModule.instrument({
-			maxAge: 25 //  Retains last 25 states
-		}),
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireAuthModule,
 		AngularFirestoreModule,
-		EffectsModule.forRoot([UserEffects]),
 		FormsModule,
 		ReactiveFormsModule,
-		AuthModule
+
+		AuthModule,
+		StateManagementModule
 	],
 	providers: [], //AuthService
 	bootstrap: [AppComponent]
