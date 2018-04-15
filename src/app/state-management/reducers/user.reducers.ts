@@ -24,6 +24,7 @@ export function userReducer(state = initialState, action: Actions) {
 
 		case ActionTypes.GET_USER:
 
+			console.log('getting user!');
 			return Object.assign({}, state, {loading: true});
 
 		case ActionTypes.AUTHENTICATED:

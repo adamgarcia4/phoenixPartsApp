@@ -5,7 +5,7 @@ import {CommonModule} from '@angular/common';
 
 import {Routes, RouterModule} from '@angular/router';
 
-import {LoginFormComponent} from "./login-form/login-form.component";
+import {LoginFormComponent} from "./components/login-form/login-form.component";
 
 const routes: Routes = [
 	{

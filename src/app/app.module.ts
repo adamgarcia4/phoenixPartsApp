@@ -81,7 +81,7 @@ export const COMPONENTS = [
 		ReactiveFormsModule,
 		AuthModule
 	],
-	providers: [AuthGuardService], //AuthService
+	providers: [], //AuthService
 	bootstrap: [AppComponent]
 })
 export class AppModule {

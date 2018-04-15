@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import {Store} from "@ngrx/store";
+import {ActionTypes} from "../../../state-management/actions/user.actions";
 
 @Component({
 	selector: 'app-login-form',
@@ -11,7 +13,7 @@ export class LoginFormComponent implements OnInit {
 
 	form: FormGroup;
 
-	constructor(private _fb: FormBuilder) {
+	constructor(private _fb: FormBuilder, private _store: Store<any>) {
 		this.form = this._fb.group({
 			username: [''], // TODO: validator?
 			password: ['']
@@ -25,6 +27,9 @@ export class LoginFormComponent implements OnInit {
 
 	onSubmit() {
 		console.log(this.form.value);
+		this._store.dispatch({
+			type: ActionTypes.GET_USER
+		})
 	}
 
 	ngOnInit() {
