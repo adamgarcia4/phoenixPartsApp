@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {machineNeededEntry} from "../state-management/models/part";
 
 @Component({
 	selector: 'app-part-machine',
@@ -7,29 +8,29 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PartMachineComponent implements OnInit {
 
-	machineList;
+	@Input() machineList: machineNeededEntry;
 
 	constructor() {
 	}
 
 	ngOnInit() {
-		this.machineList = [
-			{
-				name: "Bandsaw",
-				assigned: "Adam",
-				completed: 1
-			},
-			{
-				name: "Mill 1",
-				assigned: "Sahar",
-				completed: 0
-			},
-			{
-				name: "CNC",
-				assigned: "Diego",
-				completed: 0
-			}
-		];
+		// this.machineList = [
+		// 	{
+		// 		name: "Bandsaw",
+		// 		assigned: "Adam",
+		// 		completed: 1
+		// 	},
+		// 	{
+		// 		name: "Mill 1",
+		// 		assigned: "Sahar",
+		// 		completed: 0
+		// 	},
+		// 	{
+		// 		name: "CNC",
+		// 		assigned: "Diego",
+		// 		completed: 0
+		// 	}
+		// ];
 	}
 
 }

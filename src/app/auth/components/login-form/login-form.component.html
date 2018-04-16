@@ -1,0 +1,30 @@
+<div class="card login-form-container">
+	<div class="card-body">
+		<h5 class="card-title">Please login below!</h5>
+		<!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+		
+		<img class= "avatar" src="https://media.licdn.com/dms/image/C5103AQHoTTrJ1xgdvA/profile-displayphoto-shrink_200_200/0?e=1528725600&v=beta&t=FxH6ZHwVV5t-jQ55OQ1gnysl9nF9muOFDN7R-vt2hzI">
+		<form [formGroup]="form" (ngSubmit)="onSubmit()">
+			<div class="form-group">
+				<div class="input-group mb-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">@</div>
+					</div>
+					<input formControlName="username" type="text" class="form-control" id="username" placeholder="Username">
+				</div>
+			</div>
+
+			<div class="form-group">
+
+				<div class="input-group mb-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">...</div>
+					</div>
+					<input formControlName="password" type="text" class="form-control" id="password" placeholder="Password">
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

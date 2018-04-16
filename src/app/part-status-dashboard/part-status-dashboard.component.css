@@ -1,0 +1,10 @@
+.part {
+    background-color: red;
+    height: 100px;
+    border-radius: 5px;
+    margin: 10px 10px;
+}
+
+.card-footer {
+    padding: 5px 5px;
+}

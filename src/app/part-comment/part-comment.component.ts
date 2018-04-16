@@ -7,18 +7,26 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class PartCommentComponent implements OnInit {
 
-	@Input() data: any;
-	child = [];
+	// Member Variables
+	@Input('data') partComment: any;
+
+	// Holds child comments.  If empty,
+	childComments = [];
+
 	isNewCommentShow: boolean;
+
 
 	constructor() {
 	}
 
+	// We are passed in an array of Part comments.  I need this to display each element of the array.
+	// Loop through each element, and display comment meta data. Then, if children, recurse in.
 	ngOnInit() {
+		console.log(this.partComment);
 
-		if(this.data.children != null) {
-			// Todo: Protect against children not being an array (IE: Single comment object, etc...)
-			this.child = this.data.children.slice();
+		// Todo: Protect against children not being an array (IE: Single comment object, etc...)
+		if (this.partComment.children != null || this.partComment.children.length() == 0) {
+			this.childComments = this.partComment.children.slice();
 		}
 		this.isNewCommentShow = false;
 

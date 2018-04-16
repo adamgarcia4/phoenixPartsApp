@@ -1,29 +1,35 @@
-<img src="{{data.imgURL}}" class="avatar" alt="">
-<div class="comment">
-	<p class="meta">{{data.date}} <a href="#">{{data.name}}</a> says : <i class="pull-right">
-		<small><button (click)="commentToggle()">Reply</button></small>
-	</i></p>
-	<p>
-		{{data.text}}
-	</p>
+<div *ngFor="let data of partComment">
+
+	<img src="{{data.imgUrl}}" class="avatar" alt="">
+	<div class="comment">
+		<p class="meta">{{data.date}} <a href="#">{{data.name}}</a> says : <i class="pull-right">
+			<small>
+				<button (click)="commentToggle()">Reply</button>
+			</small>
+		</i></p>
+		<p>
+			{{data.body}}
+		</p>
+	</div>
+
 </div>
 
-<div *ngFor="let subComment of child">
-	<ul class="child-comment">
-		<li class="clearfix">
-			<div *ngIf="!isEmpty(child)">
-				<app-part-comment [data]="subComment"></app-part-comment>
-			</div>
-		</li>
-	</ul>
-</div>
+<!--<div *ngFor="let subComment of child">-->
+<!--<ul class="child-comment">-->
+<!--<li class="clearfix">-->
+<!--<div *ngIf="!isEmpty(child)">-->
+<!--<app-part-comment [data]="subComment"></app-part-comment>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
 
-<div *ngIf="isNewCommentShow">
-	<form class="comment-form">
-		<div class="form-group text-box">
-			<label for="exampleFormControlTextarea1">Reply</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-		</div>
-		<button class="btn btn-outline-primary btn-sm">Submit new comment</button>
-	</form>
-</div>
+<!--<div *ngIf="isNewCommentShow">-->
+<!--<form class="comment-form">-->
+<!--<div class="form-group text-box">-->
+<!--<label for="exampleFormControlTextarea1">Reply</label>-->
+<!--<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+<!--</div>-->
+<!--<button class="btn btn-outline-primary btn-sm">Submit new comment</button>-->
+<!--</form>-->
+<!--</div>-->
