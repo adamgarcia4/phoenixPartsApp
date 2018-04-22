@@ -1,17 +1,17 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
 
-import {Part} from '../state-management/models/part';
+import {Part} from '../../../state-management/models/part';
 
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
-import {AddPart, SetPriorityFilter} from '../state-management/actions/part.actions';
+import {AddPart, SetPriorityFilter} from '../../../state-management/actions/part.actions';
 import {withLatestFrom, map} from 'rxjs/operators';
 
 
 @Component({
 	selector: 'app-part-status-dashboard',
-	templateUrl: './part-status-dashboard.component.html',
-	styleUrls: ['./part-status-dashboard.component.css']
+	templateUrl: 'part-status-dashboard.component.html',
+	styleUrls: ['part-status-dashboard.component.css']
 })
 export class PartStatusDashboardComponent implements OnInit {
 

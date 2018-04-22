@@ -1,10 +1,10 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {machineNeededEntry} from "../state-management/models/part";
+import {machineNeededEntry} from "../../../state-management/models/part";
 
 @Component({
 	selector: 'app-part-machine',
-	templateUrl: './part-machine.component.html',
-	styleUrls: ['./part-machine.component.css']
+	templateUrl: 'part-machine.component.html',
+	styleUrls: ['part-machine.component.css']
 })
 export class PartMachineComponent implements OnInit {
 

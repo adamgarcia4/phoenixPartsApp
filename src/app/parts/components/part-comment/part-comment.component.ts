@@ -2,8 +2,8 @@ import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
 	selector: 'app-part-comment',
-	templateUrl: './part-comment.component.html',
-	styleUrls: ['./part-comment.component.css']
+	templateUrl: 'part-comment.component.html',
+	styleUrls: ['part-comment.component.css']
 })
 export class PartCommentComponent implements OnInit {
 

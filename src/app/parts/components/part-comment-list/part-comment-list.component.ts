@@ -1,13 +1,13 @@
 import {Component, OnInit, Input} from '@angular/core';
 
 // Model
-import { PartComment } from '../state-management/models/part';
+import { PartComment } from '../../../state-management/models/part';
 
 
 @Component({
 	selector: 'app-part-comment-list',
-	templateUrl: './part-comment-list.component.html',
-	styleUrls: ['./part-comment-list.component.css']
+	templateUrl: 'part-comment-list.component.html',
+	styleUrls: ['part-comment-list.component.css']
 })
 
 export class PartCommentListComponent implements OnInit {

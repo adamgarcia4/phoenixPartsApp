@@ -5,6 +5,7 @@ export interface User {
 	displayName: string;
 	loading?: boolean;
 	error?: string;
+	img: string;
 	// email?: string;
 	// isAnonymous?: boolean;
 	// photoURL?: string;

@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
-import {Part} from "../state-management/models/part";
+import { Part } from "../../../state-management/models/part"
 
-import { SetSelectedPart, DeletePart } from '../state-management/actions/part.actions'
+import { SetSelectedPart, DeletePart } from '../../../state-management/actions/part.actions'
 
 @Component({
 	selector: 'app-part-list-view',
-	templateUrl: './part-list-view.component.html',
-	styleUrls: ['./part-list-view.component.css']
+	templateUrl: 'part-list-view.component.html',
+	styleUrls: ['part-list-view.component.css']
 })
 export class PartListViewComponent implements OnInit {
 

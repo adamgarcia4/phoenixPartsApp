@@ -2,14 +2,14 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Observable, Subscription} from "rxjs";
 
-import * as fromRoot from '../state-management/reducers/part.reducers';
-import {Part} from "../state-management/models/part";
+import * as fromRoot from '../../../state-management/reducers/part.reducers';
+import {Part} from "../../../state-management/models/part";
 import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-part-view',
-	templateUrl: './part-view.component.html',
-	styleUrls: ['./part-view.component.css']
+	templateUrl: 'part-view.component.html',
+	styleUrls: ['part-view.component.css']
 })
 export class PartViewComponent implements OnInit, OnDestroy {
 

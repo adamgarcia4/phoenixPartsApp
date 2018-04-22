@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
 
 	constructor(private _fb: FormBuilder, private _store: Store<any>) {
 		this.form = this._fb.group({
-			username: [''], // TODO: validator?
+			email: [''], // TODO: validator?
 			password: ['']
 		});
 
@@ -26,10 +26,11 @@ export class LoginFormComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.form.value);
+		// console.log(this.form.value);
 		this._store.dispatch({
-			type: ActionTypes.GET_USER
-		})
+			type: ActionTypes.REGISTER_USER,
+			payload: this.form.value
+		});
 	}
 
 	ngOnInit() {

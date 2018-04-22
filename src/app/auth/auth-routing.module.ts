@@ -1,16 +1,15 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-
-
 
 import {Routes, RouterModule} from '@angular/router';
 
 import {LoginFormComponent} from "./components/login-form/login-form.component";
+import {AuthGuardService} from "../core/auth-guard.service";
 
 const routes: Routes = [
 	{
-		path: 'logintest',
-		component: LoginFormComponent
+		path: 'register',
+		component: LoginFormComponent,
+		canActivate: [AuthGuardService]
 	}
 ];
 
@@ -18,7 +17,10 @@ const routes: Routes = [
 	imports: [
 		RouterModule.forChild(routes)
 	],
-	exports: [RouterModule]
+	exports: [RouterModule],
+	providers: [
+		AuthGuardService
+	]
 })
 
 export class AuthRoutingModule {

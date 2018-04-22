@@ -12,6 +12,7 @@ import { type } from '../util/util';
 
 export const ActionTypes = {
 
+	REGISTER_USER: type('[User] Register User'),
 	GET_USER: type('[User] Get User'),
 	AUTHENTICATED: type('[User] Authenticated'),
 	NOT_AUTHENTICATED: type('[User] Not Authenticated'),

@@ -2,40 +2,34 @@ import {Component, OnInit} from '@angular/core';
 
 import {Store} from '@ngrx/store';
 
-import {AddPart} from "../state-management/actions/part.actions";
+import {AddPart} from "../../state-management/actions/part.actions";
 
-import {GetUser, FacebookLogin} from '../state-management/actions/user.actions'
+import {GetUser, FacebookLogin} from '../../state-management/actions/user.actions'
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import {getUserLoggedIn, getUserImg} from "../../state-management/reducers/user.reducers";
 
 @Component({
 	selector: 'app-header',
-	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.css']
+	templateUrl: 'header.component.html',
+	styleUrls: ['header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
 	private user: Observable<firebase.User>;
 
-	userDetails: any;
+	userLoggedIn$: Observable<any>;
+	userImg$: Observable<any>;
 
 
 	constructor(private store: Store<any>, private _firebaseAuth: AngularFireAuth) {
 		this.user = _firebaseAuth.authState;
 
-		this.user.subscribe(
-			(user) => {
-				if (user) {
-					this.userDetails = user;
-				}
-				else {
-					console.log('logout');
-					this.userDetails = null;
-				}
-			}
-		);
+		this.userImg$ = this.store.select(getUserImg);
+
+		this.userLoggedIn$ = this.store.select(getUserLoggedIn);
 	}
 
 	ngOnInit() {
@@ -54,15 +48,4 @@ export class HeaderComponent implements OnInit {
 
 		this.store.dispatch(new AddPart(part));
 	}
-
-	facebookSignin() {
-		console.log('buttonPressed');
-		this.store.dispatch(new FacebookLogin());
-		// this.store.dispatch(new Authenticate('payload'));
-	}
-
-	signOutWithTwitter() {
-		return this._firebaseAuth.auth.signOut();
-	}
-
 }

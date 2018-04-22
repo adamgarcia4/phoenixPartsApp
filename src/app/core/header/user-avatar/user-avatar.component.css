@@ -1,0 +1,13 @@
+
+.img {
+    vertical-align: top;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 50px;
+}
+
+.avatar-button {
+    padding: 0px 12px 0px 0px;
+}

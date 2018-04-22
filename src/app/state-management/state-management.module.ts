@@ -8,6 +8,9 @@ import {userReducer} from "./reducers/user.reducers";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 import {UserEffects} from "./effects/user.effects";
+import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
+import {UserService} from "./services/user.service";
 
 
 const reducer = {
@@ -22,9 +25,14 @@ const reducer = {
 		StoreDevtoolsModule.instrument({
 			maxAge: 15 //  Retains last 25 states
 		}),
-		EffectsModule.forRoot([UserEffects])
+		EffectsModule.forRoot([UserEffects]),
+		HttpClientModule
 	],
-	declarations: [],
+	declarations: [
+	],
+	providers: [
+		UserService
+	],
 	exports: [
 		StoreModule,
 		StoreDevtoolsModule,

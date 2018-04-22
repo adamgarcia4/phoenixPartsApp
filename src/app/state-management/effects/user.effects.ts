@@ -11,6 +11,8 @@ import {User} from "../models/user";
 
 export type Action = userActions.Actions;
 import 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {UserService} from "../services/user.service";
 
 // import {AuthenticateSuccessful, ActionTypes} from '../actions/user.actions';
 // import * as firebase from 'firebase/app';
@@ -26,20 +28,53 @@ import 'rxjs';
 @Injectable()
 export class UserEffects {
 
-	constructor(private actions: Actions, private afAuth: AngularFireAuth) {
+	constructor(private actions: Actions, private afAuth: AngularFireAuth, private http:HttpClient, private userService: UserService) {
 	}
+
+
+	@Effect()
+	registerUser: Observable<any> = this.actions.ofType(userActions.ActionTypes.REGISTER_USER)
+
+	// Map Action to its payload containing register user info
+		.map((action: Action) => action.payload)
+		.switchMap(payload => {
+			return this.userService.registerUser(payload)
+				.map(res=> {
+					return new userActions.Authenticated({
+						user: res
+					});
+				})
+		})
+		// .map(function(registerData) {
+		// 	if(registerData) {
+		// 		return new userActions.Authenticated(registerData);
+		// 	} else {
+		// 		return new userActions.NotAuthenticated(registerData);
+		// 	}
+		// });
+		// .map(function(registerInfo) {
+		// 	console.log('registerInfo is: ', registerInfo);
+		//
+		// 	this.http.post('http://localhost:3000/register',registerInfo)
+		// 		.subscribe(function(response) {
+		// 			console.log('posted!',response)
+		// 			return new userActions.Authenticated({user: response});
+		// 		});
+		//
+		//
+		// })
 
 	@Effect()
 	getUser: Observable<Action> = this.actions.ofType(userActions.ActionTypes.GET_USER)
 
-		// Map Action to payload information
+	// Map Action to payload information
 		.map((action: userActions.GetUser) => action.payload)
 
 		// Grab the Auth State from Firebase
 		.switchMap(payload => this.afAuth.authState)
 
-		.map(function(authData) {
-			if(authData) {
+		.map(function (authData) {
+			if (authData) {
 				const user = new User(authData.uid, authData.displayName);
 				return new userActions.Authenticated(user);
 			}
@@ -47,14 +82,14 @@ export class UserEffects {
 				return new userActions.NotAuthenticated();
 			}
 		});
-		// TODO: isn't Auth Error an observable already?
-		// .catch((err)=> Observable.of(new userActions.AuthError()));
+	// TODO: isn't Auth Error an observable already?
+	// .catch((err)=> Observable.of(new userActions.AuthError()));
 
 	//
 	@Effect()
 	login: Observable<Action> = this.actions.ofType(userActions.ActionTypes.FACEBOOK_LOGIN)
 
-		// Map Action down to payload information
+	// Map Action down to payload information
 		.map((action: userActions.FacebookLogin) => action.payload)
 
 		.switchMap(payload => {
@@ -66,16 +101,16 @@ export class UserEffects {
 			return new userActions.GetUser();
 		})
 
-		// .catch(err => {
-		// 	// return new userActions.GetUser();
-		// 	return Observable.of(new userActions.GetUser());
-		// 	// return new userActions.AuthError();
-		// })
+	// .catch(err => {
+	// 	// return new userActions.GetUser();
+	// 	return Observable.of(new userActions.GetUser());
+	// 	// return new userActions.AuthError();
+	// })
 
-		// .catch(err => {
-		// 	return Observable.of(new userActions.AuthError({error: err}));
-		// }
-		// );
+	// .catch(err => {
+	// 	return Observable.of(new userActions.AuthError({error: err}));
+	// }
+	// );
 	//
 	//
 	// @Effect()
@@ -101,7 +136,6 @@ export class UserEffects {
 		return this.afAuth.auth.signInWithPopup(provider);
 	}
 }
-
 
 
 //
