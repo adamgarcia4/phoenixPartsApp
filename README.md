@@ -1,27 +1,23 @@
-# Frontend
+# Phoenix Parts Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+## Motivation for Project
+To provide a complete web app solution that helps to manage and organize the build cycle for a FIRST robot.  
 
-## Development server
+A team is given a mere 6 weeks to ideate, design, and fabricate a competitive robot which consists of 300+ individual parts.  Therefore, because of the highly interconnected nature of a project of this caliber, a centralized system is crucial to ensure a streamlined build process.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Inspiration from this project is from Team 254's Cheesy Parts Management System found here: https://github.com/Team254/cheesy-parts
 
-## Code scaffolding
+## Project Goals
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This Application helps to streamline the build process by:
 
-## Build
+1.  Team Login System
+  A full registration system and user profile allows an administrator to oversee the progress of each teammate.  Team members are also able to communicate in real time with each other.  Also, this system integrates directly into Slack, the team's primary form of communication.
+  
+2.  Parts Management System
+  This is the core functionality of the application, where the details for a robot part are stored.  Details include: Part Status, Raw Materials, and Machine availability.
+  
+3.  Machine utilization
+  This is a side functionality, where machining times can be managed in order to reduce machine downtime.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Overall Software Architecture
